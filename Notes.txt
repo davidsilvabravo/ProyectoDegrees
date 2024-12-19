@@ -1,0 +1,86 @@
+person_id,movie_id
+102,104257
+102,112384
+129,104257
+129,95953
+144,93779
+158,109830
+158,112384
+1597,93779
+163,95953
+1697,93779
+193,104257
+197,104257
+200,112384
+398,109830
+420,95953
+596520,95953
+641,109830
+641,112384
+705,109830
+705,93779
+
+people
+id,name,birth
+102,"Kevin Bacon",1958
+129,"Tom Cruise",1962
+144,"Cary Elwes",1962
+158,"Tom Hanks",1956
+1597,"Mandy Patinkin",1952
+163,"Dustin Hoffman",1937
+1697,"Chris Sarandon",1942
+193,"Demi Moore",1962
+197,"Jack Nicholson",1937
+200,"Bill Paxton",1955
+398,"Sally Field",1946
+420,"Valeria Golino",1965
+596520,"Gerald R. Molen",1935
+641,"Gary Sinise",1955
+705,"Robin Wright",1966
+914612,"Emma Watson",1990
+
+movies
+id,title,year
+112384,"Apollo 13",1995
+104257,"A Few Good Men",1992
+109830,"Forrest Gump",1994
+93779,"The Princess Bride",1987
+95953,"Rain Man",1988
+
+
+movie_id, person_id
+
+112384 "Apollo 13",           102 "Kevin Bacon" ->
+112384 "Apollo 13",           158 "Tom Hanks"   ->
+112384 "Apollo 13",           200 "Bill Paxton"
+112384 "Apollo 13",           641 "Gary Sinise"
+---------------------------------------------------
+109830 "Forrest Gump",        158 "Tom Hanks"   ->
+109830 "Forrest Gump",        398 "Sally Field"
+109830 "Forrest Gump",        641 "Gary Sinise"
+109830 "Forrest Gump",        705 "Robin Wright" ->
+---------------------------------------------------
+93779  "The Princess Bride",  705 "Robin Wright" ->
+93779  "The Princess Bride",  144 "Cary Elwes"
+93779  "The Princess Bride", 1597 "Mandy Patinkin" ->
+93779  "The Princess Bride", 1697 "Chris Sarandon"
+
+
+    print(source_id + " | " + people[source_id]["name"] + " | " + people[source_id]["birth"] + " | ", end='')
+    print("movie_ids: ", end='')
+    for m in people[source_id]["movies"]:
+        print(m + " ", end='')
+    print()
+	
+    Source Name: Mandy Patinkin
+	1597 | Mandy Patinkin | 1952 | movie_ids: 93779 
+
+
+	print(target_id + " | " + people[target_id]["name"] + " | " + people[target_id]["birth"] + " | ", end='')
+    print("movie_ids: ", end='')
+    for n in people[target_id]["movies"]:
+        print(n + " ", end='')
+    print()
+	
+	Target Name: Kevin Bacon
+	102 | Kevin Bacon | 1958 | movie_ids: 104257 112384
